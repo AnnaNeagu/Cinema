@@ -1,7 +1,21 @@
 <template>
-  <body style="background: -webkit-linear-gradient(left, #181818, #f2f2f2)">
+  <body style="background: -webkit-linear-gradient(left, #181818, #4c5265)">
     <div class="container">
-      <h1 class="display-1" style="text-align: center">Cinema Stars Movies</h1>
+      <!-- <h1 class="display-1" style="text-align: center">Cinema Stars Movies</h1> -->
+      <header>
+        <nav>
+          <ul class="nav__links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Best movies 2022</a></li>
+            <li class="search-icon">
+              <input type="search" placeholder="Serach" />
+              <span class="fas fa-search"></span>
+            </li>
+          </ul>
+        </nav>
+
+        <a class="cta" href="#"><button>Contact</button></a>
+      </header>
       <div class="row row-cols-1 row-cols-md-3 g-6" style="text-align: center">
         <div v-for="movie in movies" :key="movie.id">
           <div class="col-4-lg">
@@ -49,9 +63,9 @@ export default {
 /* @import "./assets/css/style.css"; */
 
 .card:hover {
-  -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
-  box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
+  -moz-box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
+  box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
 }
 /* _card.scss:41 */
 .card-title {
@@ -63,11 +77,11 @@ export default {
 body {
   margin: 0;
   /* font-family: Times New Roman, Helvetica, sans-serif; */
-  background: -webkit-linear-gradient(left, #181818, #f2f2f2);
+  background: -webkit-linear-gradient(left, #181818, #4c5265);
 }
 .topnav {
   overflow: hidden;
-  background-color: -webkit-linear-gradient(left, #181818, #f2f2f2);
+  background-color: -webkit-linear-gradient(left, #181818, #4c5265);
 }
 .topnav a {
   float: left;
@@ -79,7 +93,7 @@ body {
   font-size: 17px;
 }
 .topnav a:hover {
-  background-color: black;
+  background-color: white;
   color: #52b788;
 }
 .topnav a.active {
@@ -112,5 +126,54 @@ body {
     display: block;
     text-align: left;
   }
+}
+
+li,
+a,
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.logo {
+  cursor: pointer;
+}
+.nav__links {
+  list-style: none;
+}
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: blue;
+}
+
+button {
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  background-color: rgb(5, 5, 5);
 }
 </style>
