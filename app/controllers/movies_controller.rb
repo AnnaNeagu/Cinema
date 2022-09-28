@@ -20,8 +20,23 @@ class MoviesController < ApplicationController
     end
   end
 
-  private
+  def new
+    @movie = Movie.new
+  end
 
+  def create
+    @movie =  Product.new(movie_params)
+    logger.debug @movie.errors.full_messages
+    if @movie.save
+      head 200 
+    end
+  end
+
+
+  private
+  def movie_params
+    params.require(:movies).permit(:title, :description, :year, :generes, :rating, :running_time, :trailer, :image)
+  end
   def get_formatted_movies(movie)
     formatted_movie = {
       title: movie.title,
