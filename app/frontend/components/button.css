@@ -1,0 +1,16 @@
+.button {
+  padding: 15px 25px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: rgb(3, 3, 3);
+  background-color: #f8ede3;
+  border: none;
+}
+
+.button:active {
+  background-color: #b3e8e5;
+  box-shadow: 0 5px #b3e8e5;
+  transform: translateY(4px);
+}

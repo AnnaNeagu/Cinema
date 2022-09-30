@@ -31,9 +31,13 @@
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="button" type="submit">Search</button>
         </form>
       </div>
     </div>
   </nav>
 </template>
+
+<style scoped>
+@import "./button.css";
+</style>
