@@ -19,8 +19,8 @@
                     placeholder="Title"
                     v-model="state.title"
                   />
-                  <span v-if="v$.name.$error">
-                    {{ v$.name.$errors[0].$message }}
+                  <span v-if="v$.title.$error">
+                    {{ v$.title.$errors[0].$message }}
                   </span>
 
                   <div class="invalid-feedback">Please enter a name.</div>
@@ -33,8 +33,8 @@
                     placeholder="Year"
                     v-model="state.year"
                   />
-                  <span v-if="v$.bar_code.$error">
-                    {{ v$.bar_code.$errors[0].$message }}
+                  <span v-if="v$.year.$error">
+                    {{ v$.year.$errors[0].$message }}
                   </span>
 
                   <div class="invalid-feedback">Please enter a bar code.</div>
@@ -53,8 +53,8 @@
 
                     <div class="invalid-feedback">Please enter a price.</div>
                   </div>
-                  <span v-if="v$.price.$error">
-                    {{ v$.price.$errors[0].$message }}
+                  <span v-if="v$.generes.$error">
+                    {{ v$.generes.$errors[0].$message }}
                   </span>
                 </div>
 
@@ -77,8 +77,8 @@
                     placeholder="Running Time"
                     v-model="state.running_time"
                   />
-                  <span v-if="v$.name.$error">
-                    {{ v$.name.$errors[0].$message }}
+                  <span v-if="v$.running_time.$error">
+                    {{ v$.running_time.$errors[0].$message }}
                   </span>
 
                   <div class="invalid-feedback">Please enter a name.</div>
@@ -91,8 +91,8 @@
                     placeholder="Trailer"
                     v-model="state.trailer"
                   />
-                  <span v-if="v$.bar_code.$error">
-                    {{ v$.bar_code.$errors[0].$message }}
+                  <span v-if="v$.trailer.$error">
+                    {{ v$.trailer.$errors[0].$message }}
                   </span>
 
                   <div class="invalid-feedback">Please enter a bar code.</div>
@@ -136,21 +136,25 @@ import { required } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
 import axios from "axios";
 export default {
-  name: "NewProduct",
+  name: "NewMovie",
   setup() {
     const state = reactive({
-      name: "",
-      bar_code: "",
-      price: "",
+      title: "",
+      year: "",
+      generes: "",
       image: null,
+      running_time: "",
+      trailer: "",
       description: "",
     });
 
     const rules = computed(() => {
       return {
-        name: { required },
-        bar_code: { required },
-        price: { required },
+        title: { required },
+        year: { required },
+        generes: { required },
+        running_time: { required },
+        trailer: { required },
 
         description: { required },
         // description: { required, minLength: minLength(10) },
@@ -183,13 +187,15 @@ export default {
 
         const res = await axios.post(
           //path to rails app
-          "http://localhost:3000/apis/products/v1/products",
+          "http://localhost:5100/movies",
           {
             //data taken from the form
-            name: this.state.name,
-            bar_code: this.state.bar_code,
-            price: this.state.price,
-            picture: this.state.image,
+            title: this.state.title,
+            year: this.state.year,
+            generes: this.state.generes,
+            image: this.state.image,
+            running_time: this.state.running_time,
+            trailer: this.state.trailer,
             description: this.state.description,
 
             headers: {
@@ -197,29 +203,43 @@ export default {
             },
           }
         );
-        console.log(this.state.name);
-        console.log(this.state.bar_code);
-        console.log(this.state.price);
+        console.log(this.state.title);
+        console.log(this.state.year);
+        console.log(this.state.generes);
         console.log(this.state.image);
+        console.log(this.state.running_time);
+        console.log(this.state.trailer);
         console.log(this.state.description);
         //for test in console
         console.log(res);
         //if the data is added correctly
         if (res.status == 200) {
           //redirect to products page
-          this.$router.replace({ name: "Products" });
+          // this.$router.replace("http://localhost:5100/welcome/index");
+          this.$swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(function () {
+            window.location.href = "http://localhost:5100/welcome/index";
+          }, 1800);
         }
       } else {
         alert("Form failed validation.");
-        console.log(this.state.name);
-        console.log(this.state.bar_code);
-        console.log(this.state.price);
+        console.log(this.state.title);
+        console.log(this.state.year);
+        console.log(this.state.generes);
         console.log(this.state.image);
+        console.log(this.state.running_time);
+        console.log(this.state.trailer);
         console.log(this.state.description);
       }
     },
     postData(e) {
-      this.axios.post("http://localhost:3000/apis/products/v1/products");
+      this.axios.post("http://localhost:5100/movies");
       console.warn(this.state);
       e.preventDefault();
     },

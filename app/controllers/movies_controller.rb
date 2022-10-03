@@ -25,8 +25,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie =  Product.new(movie_params)
-    logger.debug @movie.errors.full_messages
+    @movie =  Movie.new(movie_params)
     if @movie.save
       head 200 
     end
@@ -35,7 +34,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movies).permit(:title, :description, :year, :generes, :rating, :running_time, :trailer, :image)
+    params.require(:movie).permit(:title, :description, :year, :generes, :rating, :running_time, :trailer, :image)
   end
   def get_formatted_movies(movie)
     formatted_movie = {

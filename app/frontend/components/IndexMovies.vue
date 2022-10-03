@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style>
+body {
+  box-shadow: 0 10px 50px rgb(122, 121, 121),
+    inset 0 5px 50px rgb(163, 163, 163);
+
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+  overflow: hidden;
+}
 /* @import "./assets/css/style.css"; */
 
 .card:hover {
