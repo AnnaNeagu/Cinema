@@ -1,5 +1,21 @@
 <template>
-  <body style="background: -webkit-linear-gradient(left, #181818, #4c5265)">
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+      <!-- Masthead Heading-->
+      <h1 class="masthead-heading mb-0">CINEMA START</h1>
+      <!-- Icon Divider-->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+      </div>
+      <!-- Masthead Subheading-->
+      <p class="pre-wrap masthead-subheading font-weight-light mb-0">
+        something about this website
+      </p>
+    </div>
+  </header>
+  <!-- <body style="background: -webkit-linear-gradient(left, #181818, #4c5265)">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3 g-6" style="text-align: center">
         <div v-for="movie in movies" :key="movie.id">
@@ -25,7 +41,7 @@
         </div>
       </div>
     </div>
-  </body>
+  </body> -->
 </template>
 
 <script>
@@ -45,6 +61,9 @@ export default {
 </script>
 
 <style>
+@import "../css/styles.css";
+@import "../css/body.css";
+@import "../css/heading.css";
 body {
   box-shadow: 0 10px 50px rgb(122, 121, 121),
     inset 0 5px 50px rgb(163, 163, 163);

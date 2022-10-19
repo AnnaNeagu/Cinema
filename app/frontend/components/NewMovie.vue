@@ -9,7 +9,7 @@
       <div class="col-md-12 register-right">
         <div class="tab-content" id="myTabContent">
           <div class="row register-form">
-            <form>
+            <form enctype="multipart/form-data">
               <div class="row justify-content-md-center">
                 <div class="col-md-4">
                   <label>Title</label>
