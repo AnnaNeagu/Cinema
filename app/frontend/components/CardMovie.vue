@@ -1,63 +1,51 @@
 <template>
-  <header class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
-      <h1 class="masthead-heading mb-0">CINEMA STAR</h1>
-      <p class="pre-wrap masthead-subheading font-weight-light mb-0">
-        something about this website
-      </p>
-    </div>
-  </header>
-  <body>
-    <div class="container" style="margin-top: 30px">
-      <div class="row row-cols-1 row-cols-md-3 g-6" style="text-align: center">
-        <div v-for="movie in movies" :key="movie.id">
-          <div class="col-4-lg">
-            <CardMovie :movie="movie" />
-            <br />
-          </div>
-        </div>
+  <button @click="handleShowMovie(movie)" style="background: url(image.png)">
+    <img src="./image.png" alt="Snow" style="width: 100%" />
+    <div data-toggle="modal">
+      <p>{{ movie.title }}</p>
+      <div
+        class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
+      >
+        {{ movie.description }}
+        <div
+          class="portfolio-item-caption-content text-center text-white"
+        ></div>
       </div>
     </div>
-  </body>
+  </button>
+  <ModalMovie :showModal="dataModal" :movie="movie" />
 </template>
-
 <script>
-import CardMovie from "./CardMovie.vue";
+import ModalMovie from "./ModalMovie.vue";
 export default {
   components: {
-    CardMovie,
+    ModalMovie,
   },
-  metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
-    title: "Cinema",
-    // all titles will be injected into this template
-    script: [{ src: "../js/scripts.js", body: true }],
+  props: {
+    movie: Object,
   },
   data() {
     return {
-      movies: [],
-      movie: null,
-      dataMovie: false,
+      dataModal: false,
     };
   },
-  mounted() {
-    fetch("http://localhost:5100/movies")
-      .then((res) => res.json())
-      .then((data) => (this.movies = data))
-      .catch((err) => console.log(err.message));
+  methods: {
+    handleShowMovie(movie) {
+      this.dataModal = !this.dataModal;
+      this.movie = movie;
+    },
   },
 };
 </script>
-
 <style>
 @import "../css/styles.css";
 @import "../css/body.css";
 @import "../css/heading.css";
 body {
-  /* box-shadow: 0 10px 50px rgb(122, 121, 121),
-    inset 0 5px 50px rgb(163, 163, 163); */
+  box-shadow: 0 10px 50px rgb(122, 121, 121),
+    inset 0 5px 50px rgb(163, 163, 163);
 
-  /* background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%); */
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
   overflow: hidden;
 }
 /* @import "./assets/css/style.css"; */
@@ -174,8 +162,6 @@ button {
 }
 
 button:hover {
-  -webkit-box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
-  -moz-box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
-  box-shadow: -1px 9px 40px -12px rgba(195, 192, 192, 0.75);
+  background-color: rgb(5, 5, 5);
 }
 </style>
